@@ -47,6 +47,20 @@ app.delete('/productos/:id', (req, res) => {
     } 
 });
 
+app.get('/productos', (req, res) => {
+    const filterPrecio = products.filter((product) => product.precio >= 50 && product.precio <= 250 )
+    res.send(filterPrecio)
+});
+
+app.get('/productos/:id', (req, res) => {
+    const filterId = products.filter((product) => product.id == req.params.id)
+    res.send(filterId)
+});
+
+app.get('/productos/:nombre', (req, res) => {
+    const filterNombre = products.filter((product) => product.nombre == req.params.nombre)
+    res.send(filterNombre)
+});
 
 app.listen('3000', () => {
     console.log('Puerto abierto')
