@@ -20,7 +20,7 @@ app.use(express.json());
 app.post('/productos/newProduct', (req, res) => {
     const newProduct =  { id: products.length + 1, nombre: req.body.nombre , precio: req.body.precio }
     products.push(newProduct)
-    res.status(201)
+    res.status(201).send(newProduct)
 });
 
 app.put('/productos/:id', (req, res) => {
@@ -34,7 +34,7 @@ app.put('/productos/:id', (req, res) => {
             }
         })
     }else {
-        res.status(404)
+        res.status(404).send('Error')
     }
 });
 
@@ -43,7 +43,7 @@ app.delete('/productos/:id', (req, res) => {
     if(found) {
         res.status(201).send(products.filter(product => product.id != req.params.id))
     } else {
-        res.status(404)
+        res.status(404).send('Error')
     } 
 });
 
