@@ -47,7 +47,12 @@ app.delete('/productos/:id', (req, res) => {
     } 
 });
 
-app.get('/productos', (req, res) => {
+app.get('/productos/precio/:precio', (req, res) => {
+    const precio = products.filter((product) => product.precio == req.params.precio )
+   res.send(precio)
+});
+
+app.get('/productos/filterPrecio', (req, res) => {
     const filterPrecio = products.filter((product) => product.precio >= 50 && product.precio <= 250 )
     res.send(filterPrecio)
 });
